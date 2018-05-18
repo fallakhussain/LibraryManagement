@@ -15,7 +15,7 @@ namespace LibraryManagement.Data.Interfaces
         void Create(T entity);
         void Update(T entity);
         void Delete(T entity);
-        int Count(Func<T, bool> precidate);
+        int Count(Func<T, bool> predicate);
 
     }
 }
