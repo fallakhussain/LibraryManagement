@@ -10,10 +10,14 @@ namespace LibraryManagement.Data.Repository
     {
         protected readonly LibraryDbContext _context;
 
+        public Repository(LibraryDbContext context) => _context = context;
+
         public int Count(Func<T, bool> precidate)
         {
             throw new NotImplementedException();
         }
+
+        protected void Save() => _context.SaveChanges();
 
         public void Create(T entity)
         {
