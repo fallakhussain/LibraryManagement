@@ -21,12 +21,13 @@ namespace LibraryManagement.Controllers
             _bookRepository = bookRepository;
         }
 
-        // GET: /<controller>/
+        
         public IActionResult Index()
         {
             return View();
         }
 
+        [Route("Customer")]
         public IActionResult List()
         {
             //First create list of customer view model
