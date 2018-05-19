@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LibraryManagement.Data.Interfaces;
+using LibraryManagement.Data.Model;
 using LibraryManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -51,5 +52,28 @@ namespace LibraryManagement.Controllers
 
             return View(customerVM);
         }
+
+        public IActionResult Delete(int id)
+        {
+            var customer = _customerRepository.GetById(id);
+
+            _customerRepository.Delete(customer);
+
+            return RedirectToAction("List");
+        }
+
+        //Implementing create
+
+        //1. Make user navigate to create view
+        public IActionResult Create() => View();
+
+        //2. Create POST request
+        [HttpPost]
+        public IActionResult Create(Customer customer)
+        {
+            _customerRepository.Create(customer);
+            return RedirectToAction("List");
+        }
+
     }
 }
