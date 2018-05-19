@@ -35,6 +35,10 @@ namespace LibraryManagement.Data.Repository
 
         public T GetById(int id) => _context.Set<T>().Find(id);
 
-        public void Update(T entity) => _context.Entry(entity).State = EntityState.Modified;
+        public void Update(T entity)
+        {
+        _context.Entry(entity).State = EntityState.Modified;
+        Save();
+        }
     }
 }
