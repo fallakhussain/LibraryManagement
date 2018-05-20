@@ -38,13 +38,13 @@ namespace LibraryManagement.Controllers
         }
 
         //
-        public IActionResult LendBook(int id)
+        public IActionResult LendBook(int bookId)
         {
             //Load current book and all customers
             //In order to send data to the Lend view we need a ViewModel Class
             var lendVM = new LendViewModel()
             {
-                Book = _bookRepository.GetById(id),
+                Book = _bookRepository.GetById(bookId),
                 Customers = _customerRepository.GetAll()
             };
 
@@ -60,7 +60,7 @@ namespace LibraryManagement.Controllers
             var customer = _customerRepository.GetById(lendViewModel.Book.BorrowerId);
 
             book.Borrower = customer;
-
+            _bookRepository.Update(book);
             // Redirect to the list view
             return RedirectToAction("List");
         }
