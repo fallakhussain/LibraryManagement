@@ -39,6 +39,10 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         public IActionResult Update(Author author)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(author);
+            }
             _authorRepository.Update(author);
             return RedirectToAction("List");
         }
@@ -53,6 +57,10 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         public IActionResult Create(Author author)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(author);
+            }
             _authorRepository.Create(author);
 
             return RedirectToAction("List");
